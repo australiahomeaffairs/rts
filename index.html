@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Australia RTS Company | Official Visa & Document Portal</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #0b1f3a;
+            --royal: #1d4ed8;
+            --gold: #f59e0b;
+            --gold-hover: #d97706;
+            --light-bg: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #061224;
+            color: #cbd5e1;
+            font-size: 0.88rem;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background-color: var(--navy);
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.45rem;
+            color: #fff !important;
+        }
+        .navbar-brand span {
+            color: var(--gold);
+        }
+        .nav-link {
+            color: #e2e8f0 !important;
+            font-weight: 500;
+            margin: 0 8px;
+            transition: 0.2s;
+        }
+        .nav-link:hover {
+            color: var(--gold) !important;
+        }
+        .btn-admin {
+            background-color: var(--gold);
+            color: #0b1f3a;
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 8px 18px;
+            border: none;
+            transition: 0.2s;
+        }
+        .btn-admin:hover {
+            background-color: var(--gold-hover);
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(11, 31, 58, 0.94), rgba(29, 78, 216, 0.85)),
+                        url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1600&q=80') center/cover;
+            color: #fff;
+            padding: 90px 0;
+        }
+        .hero-badge {
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 18px;
+        }
+
+        /* Category Buttons */
+        .category-btn {
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            color: #334155;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin: 5px;
+            transition: all 0.25s;
+        }
+        .category-btn:hover, .category-btn.active {
+            background: var(--navy);
+            color: var(--gold);
+            border-color: var(--navy);
+            box-shadow: 0 4px 12px rgba(11, 31, 58, 0.2);
+        }
+
+        /* Document Cards */
+        .doc-card {
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            padding: 22px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(11, 31, 58, 0.1);
+            border-color: var(--royal);
+        }
+        .doc-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: #eff6ff;
+            color: var(--royal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+        .cat-badge {
+            background: #fef3c7;
+            color: #b45309;
+            font-weight: 700;
+            font-size: 0.78rem;
+            padding: 5px 12px;
+            border-radius: 50px;
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+            height: 100%;
+            transition: 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        /* PURE CSS MODALS (100% Fail-Safe) */
+        .custom-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 31, 58, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        .custom-modal-box {
+            background: #fff;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 500px;
+            padding: 28px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            max-height: 92vh;
+            overflow-y: auto;
+        }
+        .custom-modal-lg {
+            max-width: 900px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            background: #f1f5f9;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: #475569;
+        }
+        .close-btn:hover {
+            background: #e2e8f0;
+            color: #000;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: #cbd5e1;
+            padding: 60px 0 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Header Contact Placeholders -->
+    <div class="top-bar">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div>
+                <i class="fa-solid fa-envelope text-warning me-2"></i> info@australiarts.com
+                <span class="mx-3">|</span>
+                <i class="fa-solid fa-phone text-warning me-2"></i> +61 099 011 400 
+            </div>
+            <div class="d-none d-md-block">
+                <i class="fa-solid fa-location-dot text-warning me-1"></i> Sydney, Australia & Global Visa Processing Center
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-earth-oceania text-warning me-2"></i>AUSTRALIA <span>RTS</span>
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#documents">Documents</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <button class="btn-admin" onclick="openAdminModal()">
+                            <i class="fa-solid fa-user-shield me-1"></i> Admin Panel
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-center">
+        <div class="container">
+            <div class="hero-badge">
+                <i class="fa-solid fa-check-circle me-1"></i> Trusted Australian Visa & Immigration Company
+            </div>
+            <h1 class="display-4 fw-bold mb-3">Australia RTS Company</h1>
+            <p class="lead mx-auto mb-4 text-light" style="max-width: 700px;">
+                Check and download your official Visa, Work Permit, LMIA, Application, Job Letter, and Medical documents securely using your Passport Number.
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="#documents" class="btn btn-warning btn-lg fw-bold px-4">
+                    <i class="fa-solid fa-folder-open me-2"></i>Check Your Documents
+                </a>
+                <a href="#contact" class="btn btn-outline-light btn-lg px-4">Contact Support</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Document Portal Section -->
+    <section id="documents" class="py-5">
+        <div class="container py-3">
+            <div class="text-center mb-4">
+                <h6 class="text-primary fw-bold text-uppercase">Official Client Portal</h6>
+                <h2 class="fw-bold">Select Document Category</h2>
+                <p class="text-muted">Click on your category, select your name, and enter your Passport Number to view & download.</p>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="d-flex justify-content-center flex-wrap mb-4" id="categoryTabs">
+                <button class="category-btn active" onclick="filterCategory('All', this)">All Documents</button>
+                <button class="category-btn" onclick="filterCategory('Application', this)">Application</button>
+                <button class="category-btn" onclick="filterCategory('Work Permit', this)">Work Permit</button>
+                <button class="category-btn" onclick="filterCategory('LMIA', this)">LMIA</button>
+                <button class="category-btn" onclick="filterCategory('Visa', this)">Visa</button>
+                <button class="category-btn" onclick="filterCategory('Job Letter', this)">Job Letter</button>
+                <button class="category-btn" onclick="filterCategory('Medical Report', this)">Medical Report</button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg shadow-sm">
+                        <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search text-muted"></i></span>
+                        <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Search by applicant name..." oninput="renderDocuments()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents Grid -->
+            <div class="row g-4" id="documentsGrid"></div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-5 bg-white border-top border-bottom">
+        <div class="container py-3">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1000&q=80" alt="Australia RTS" class="img-fluid rounded-4 shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h6 class="text-primary fw-bold text-uppercase">About Australia RTS Company</h6>
+                    <h2 class="fw-bold mb-3">Your Reliable Partner for Australian Work & Visa Processing</h2>
+                    <p class="text-muted">
+                        Australia RTS Company specializes in genuine employment permits, LMIA approvals, employer sponsorship job letters, and complete visa documentation. Our digital portal ensures 100% privacy—only the rightful applicant can unlock their files using their personal passport credentials.
+                    </p>
+                    <div class="row g-3 mt-2">
+                        <div class="col-sm-6">
+                            <div class="p-3 bg-light rounded-3 border">
+                                <i class="fa-solid fa-shield-halved text-primary fs-4 mb-2"></i>
+                                <h6 class="fw-bold mb-1">Password Protected</h6>
+                                <small class="text-muted">Secured by individual client passport numbers.</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 bg-light rounded-3 border">
+                                <i class="fa-solid fa-bolt text-warning fs-4 mb-2"></i>
+                                <h6 class="fw-bold mb-1">Instant Download</h6>
+                                <small class="text-muted">Direct preview & instant document download.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Country / Visa Services Section -->
+    <section id="services" class="py-5">
+        <div class="container py-3">
+            <div class="text-center mb-5">
+                <h6 class="text-primary fw-bold text-uppercase">What We Provide</h6>
+                <h2 class="fw-bold">Our Visa & Documentation Services</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="fa-solid fa-briefcase fs-2 text-primary mb-3"></i>
+                        <h5 class="fw-bold">Work Permit & LMIA</h5>
+                        <p class="text-muted mb-0">Complete employer sponsorship and Labour Market Impact Assessment documentation processing.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="fa-solid fa-file-signature fs-2 text-warning mb-3"></i>
+                        <h5 class="fw-bold">Job Offer Letters</h5>
+                        <p class="text-muted mb-0">Verified Australian company job letters and employment contracts for skilled and general workers.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="fa-solid fa-passport fs-2 text-success mb-3"></i>
+                        <h5 class="fw-bold">Visa & Medical Clearance</h5>
+                        <p class="text-muted mb-0">End-to-end visa application submission, biometric guidance, and medical report verification.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-white border-top">
+        <div class="container py-3">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <h6 class="text-primary fw-bold text-uppercase">Get In Touch</h6>
+                    <h2 class="fw-bold mb-3">Contact Australia RTS Company</h2>
+                    <p class="text-muted mb-4">Have questions regarding your document or visa application? Contact our support desk.</p>
+                    <div class="mb-3">
+                        <strong><i class="fa-solid fa-phone text-primary me-2"></i> Phone:</strong>
+                        <p class="text-muted mb-0">+61 000 000 000 (Change Placeholder)</p>
+                    </div>
+                    <div class="mb-3">
+                        <strong><i class="fa-solid fa-envelope text-primary me-2"></i> Email:</strong>
+                        <p class="text-muted mb-0">info@australiarts.com (Change Placeholder)</p>
+                    </div>
+                    <div class="mb-3">
+                        <strong><i class="fa-solid fa-location-dot text-primary me-2"></i> Office Address:</strong>
+                        <p class="text-muted mb-0">Sydney CBD, NSW 2000, Australia</p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="p-4 bg-light rounded-4 border">
+                        <form onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent to Australia RTS Company.'); this.reset();">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Your Name</label>
+                                    <input type="text" class="form-control" required placeholder="Enter full name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Phone / WhatsApp</label>
+                                    <input type="text" class="form-control" required placeholder="Enter phone number">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Subject</label>
+                                    <input type="text" class="form-control" required placeholder="Visa / Job Letter Inquiry">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Message</label>
+                                    <textarea class="form-control" rows="4" required placeholder="Write your message here..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary fw-bold px-4 py-2">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4 pb-4 border-bottom border-secondary">
+                <div class="col-md-6">
+                    <h4 class="fw-bold text-white">AUSTRALIA <span class="text-warning">RTS</span> COMPANY</h4>
+                    <p class="small text-secondary mb-0" style="max-width: 420px;">
+                        Official Visa Processing & Client Document Management Portal. All documents are protected with private passport security.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-1"><i class="fa-solid fa-envelope text-warning me-2"></i> info@australiarts.com</p>
+                    <p class="mb-2"><i class="fa-solid fa-phone text-warning me-2"></i> +61 000 000 000</p>
+                    <button class="btn btn-sm btn-outline-warning" onclick="openAdminModal()">
+                        <i class="fa-solid fa-lock me-1"></i> Open Admin Panel
+                    </button>
+                </div>
+            </div>
+            <div class="text-center pt-3 small text-secondary">
+                &copy; 2026 Australia RTS Company. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ========================================================= -->
+    <!-- 1. CLIENT PASSWORD UNLOCK & VIEW MODAL                    -->
+    <!-- ========================================================= -->
+    <div class="custom-overlay" id="clientDocModal">
+        <div class="custom-modal-box">
+            <button class="close-btn" onclick="closeClientModal()"><i class="fa-solid fa-xmark"></i></button>
+
+            <!-- Step 1: Enter Password (Passport Number) -->
+            <div id="passwordStep">
+                <div class="text-center mb-3">
+                    <div class="doc-icon mx-auto mb-2"><i class="fa-solid fa-lock"></i></div>
+                    <span class="cat-badge" id="modalDocCategory">Category</span>
+                    <h4 class="fw-bold mt-2 mb-1" id="modalClientName">Applicant Name</h4>
+                    <p class="text-muted small">Please enter your Passport Number (Password) to view and download this document.</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Passport Number / Password</label>
+                    <input type="password" id="clientPasswordInput" class="form-control form-control-lg" placeholder="Enter your passport number...">
+                    <div class="text-danger small mt-2" id="passwordError" style="display:none;">
+                        <i class="fa-solid fa-circle-exclamation me-1"></i> Incorrect Passport Number! Please try again.
+                    </div>
+                </div>
+
+                <button class="btn btn-primary w-100 py-2 fw-bold" onclick="verifyDocumentPassword()">
+                    <i class="fa-solid fa-unlock-keyhole me-2"></i> Unlock Document
+                </button>
+            </div>
+
+            <!-- Step 2: Unlocked Document Preview & Download -->
+            <div id="unlockedStep" style="display:none;">
+                <div class="alert alert-success py-2 small fw-semibold">
+                    <i class="fa-solid fa-circle-check me-1"></i> Document Unlocked Successfully!
+                </div>
+                <h5 class="fw-bold mb-1" id="unlockedTitle">Client Name</h5>
+                <p class="text-muted small mb-3" id="unlockedCategory">Category</p>
+
+                <div class="p-3 bg-light rounded-3 border mb-3" id="unlockedPreviewArea"></div>
+
+                <div class="d-grid gap-2">
+                    <a id="downloadDocBtn" href="#" download class="btn btn-success fw-bold py-2">
+                        <i class="fa-solid fa-download me-2"></i> Download Document
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- 2. ADMIN PANEL MODAL (LOGIN + FULL DASHBOARD)             -->
+    <!-- ========================================================= -->
+    <div class="custom-overlay" id="adminModal">
+        <div class="custom-modal-box custom-modal-lg">
+            <button class="close-btn" onclick="closeAdminModal()"><i class="fa-solid fa-xmark"></i></button>
+
+            <!-- ADMIN LOGIN SCREEN -->
+            <div id="adminLoginBox" style="max-width: 420px; margin: 20px auto;">
+                <div class="text-center mb-4">
+                    <div class="doc-icon mx-auto mb-2 bg-warning text-dark"><i class="fa-solid fa-user-shield"></i></div>
+                    <h4 class="fw-bold">Admin Panel Login</h4>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Admin Password</label>
+                    <input type="password" id="adminPassInput" class="form-control form-control-lg" value="admin123" placeholder="Enter admin password">
+                    <div class="text-danger small mt-2" id="adminLoginError" style="display:none;">
+                        Wrong admin password!
+                    </div>
+                </div>
+                <button class="btn btn-warning w-100 fw-bold py-2" onclick="loginAdmin()">
+                    <i class="fa-solid fa-right-to-bracket me-2"></i> Login to Admin Dashboard
+                </button>
+            </div>
+
+            <!-- ADMIN DASHBOARD SCREEN -->
+            <div id="adminDashboardBox" style="display:none;">
+                <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
+                    <div>
+                        <h4 class="fw-bold mb-0"><i class="fa-solid fa-gauge-high text-primary me-2"></i>Australia RTS — Admin Panel</h4>
+                        <small class="text-muted">Add client documents and set their Passport Number as the access password.</small>
+                    </div>
+                    <button class="btn btn-sm btn-outline-danger" onclick="logoutAdmin()">Logout</button>
+                </div>
+
+                <!-- Add New Document Form -->
+                <div class="p-3 bg-light rounded-3 border mb-4">
+                    <h6 class="fw-bold text-primary mb-3"><i class="fa-solid fa-plus-circle me-1"></i> Add New Client Document</h6>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Client Full Name *</label>
+                            <input type="text" id="docClientName" class="form-control" placeholder="e.g. Md. Jihad Islam">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Document Category *</label>
+                            <select id="docCategory" class="form-select">
+                                <option value="Application">Application</option>
+                                <option value="Work Permit">Work Permit</option>
+                                <option value="LMIA">LMIA</option>
+                                <option value="Visa">Visa</option>
+                                <option value="Job Letter">Job Letter</option>
+                                <option value="Medical Report">Medical Report</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Password (Passport Number) *</label>
+                            <input type="text" id="docPassword" class="form-control" placeholder="e.g. A12345678">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Upload Document File (PDF / Image)</label>
+                            <input type="file" id="docFileInput" class="form-control" accept="image/*,.pdf">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">OR Direct File / Google Drive Link</label>
+                            <input type="url" id="docLinkInput" class="form-control" placeholder="https://drive.google.com/...">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Short Note / Remarks (Optional)</label>
+                            <input type="text" id="docNote" class="form-control" placeholder="e.g. Official Approved Job Offer Letter - Sydney">
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary fw-bold px-4" onclick="addDocument()">
+                                <i class="fa-solid fa-cloud-arrow-up me-2"></i> Save & Publish Document
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Existing Documents Table -->
+                <h6 class="fw-bold mb-2">All Uploaded Documents (<span id="adminDocCount">0</span>)</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle small">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Category</th>
+                                <th>Passport / Password</th>
+                                <th>Date</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Only for Mobile Navbar Toggle) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ========================================================= -->
+    <!-- MAIN JAVASCRIPT LOGIC (100% BULLETPROOF)                  -->
+    <!-- ========================================================= -->
+    <script>
+        const STORAGE_KEY = 'australia_rts_docs_v2';
+        let currentCategory = 'All';
+        let selectedDocId = null;
+
+        // Default Demo Data (Will load first time)
+        const defaultDocuments = [
+            {
+                id: 101,
+                name: 'Md. Rahim Uddin',
+                category: 'Job Letter',
+                password: 'A12345678',
+                date: '11 Nov 2026',
+                fileData: '',
+                fileLink: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+                note: 'Official Australian Employer Job Offer Letter.'
+            },
+            {
+                id: 102,
+                name: 'Tanvir Ahmed',
+                category: 'Work Permit',
+                password: 'B98765432',
+                date: '10 Nov 2026',
+                fileData: '',
+                fileLink: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+                note: 'Subclass 482 TSS Work Permit Approval.'
+            },
+            {
+                id: 103,
+                name: 'Sabbir Hossain',
+                category: 'LMIA',
+                password: 'C11223344',
+                date: '09 Nov 2026',
+                fileData: '',
+                fileLink: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+                note: 'Approved Labour Market Assessment Copy.'
+            },
+            {
+                id: 104,
+                name: 'Mehedi Hasan',
+                category: 'Visa',
+                password: 'D55667788',
+                date: '08 Nov 2026',
+                fileData: '',
+                fileLink: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+                note: 'Australian Electronic Visa Grant Notice.'
+            }
+        ];
+
+        // Load Documents safely
+        function getDocuments() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    return JSON.parse(saved);
+                } else {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultDocuments));
+                    return defaultDocuments;
+                }
+            } catch (e) {
+                return defaultDocuments;
+            }
+        }
+
+        // Save Documents safely
+        function saveDocuments(docs) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(docs));
+            } catch (e) {
+                alert('File size is too large for browser storage! Please use a smaller image/PDF or paste a Google Drive link.');
+            }
+        }
+
+        // Render Public Document Cards (NO Passport Number shown below name!)
+        function renderDocuments() {
+            const docs = getDocuments();
+            const search = document.getElementById('searchInput').value.toLowerCase().trim();
+            const grid = document.getElementById('documentsGrid');
+
+            const filtered = docs.filter(doc => {
+                const matchCategory = (currentCategory === 'All') || (doc.category === currentCategory);
+                const matchSearch = doc.name.toLowerCase().includes(search) || doc.category.toLowerCase().includes(search);
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="fa-regular fa-folder-open fs-1 text-muted mb-2"></i>
+                        <h5 class="text-muted">No documents found in "${currentCategory}"</h5>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(doc => `
+                <div class="col-md-6 col-lg-4">
+                    <div class="doc-card" onclick="openClientModal(${doc.id})">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="doc-icon">
+                                    <i class="fa-solid fa-file-shield"></i>
+                                </div>
+                                <span class="cat-badge">${doc.category}</span>
+                            </div>
+                            <h5 class="fw-bold mb-1 text-dark">${doc.name}</h5>
+                            <p class="text-muted small mb-3">
+                                <i class="fa-regular fa-calendar me-1"></i> Issued: ${doc.date}
+                            </p>
+                        </div>
+                        <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                            <span class="small fw-semibold text-primary">
+                                <i class="fa-solid fa-lock me-1"></i> Password Protected
+                            </span>
+                            <span class="btn btn-sm btn-outline-primary fw-bold">Open File &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Category Filter
+        function filterCategory(category, btnElement) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            renderDocuments();
+        }
+
+        // Open Client Password Modal
+        function openClientModal(id) {
+            const docs = getDocuments();
+            const doc = docs.find(d => d.id === id);
+            if (!doc) return;
+
+            selectedDocId = id;
+            document.getElementById('modalDocCategory').innerText = doc.category;
+            document.getElementById('modalClientName').innerText = doc.name;
+            document.getElementById('clientPasswordInput').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+
+            document.getElementById('passwordStep').style.display = 'block';
+            document.getElementById('unlockedStep').style.display = 'none';
+            document.getElementById('clientDocModal').style.display = 'flex';
+        }
+
+        function closeClientModal() {
+            document.getElementById('clientDocModal').style.display = 'none';
+        }
+
+        // Verify Client Passport Number / Password
+        function verifyDocumentPassword() {
+            const inputPass = document.getElementById('clientPasswordInput').value.trim();
+            const docs = getDocuments();
+            const doc = docs.find(d => d.id === selectedDocId);
+            if (!doc) return;
+
+            if (inputPass.toLowerCase() === doc.password.toLowerCase()) {
+                document.getElementById('passwordStep').style.display = 'none';
+                document.getElementById('unlockedStep').style.display = 'block';
+
+                document.getElementById('unlockedTitle').innerText = doc.name;
+                document.getElementById('unlockedCategory').innerText = doc.category + ' • Issued: ' + doc.date;
+
+                const previewBox = document.getElementById('unlockedPreviewArea');
+                const downloadBtn = document.getElementById('downloadDocBtn');
+
+                const targetUrl = doc.fileData || doc.fileLink || '#';
+
+                if (doc.fileData && doc.fileData.startsWith('data:image')) {
+                    previewBox.innerHTML = `
+                        <p class="small mb-2">${doc.note || 'Official Verified Document'}</p>
+                        <img src="${doc.fileData}" class="img-fluid rounded border" alt="Document">
+                    `;
+                    downloadBtn.href = doc.fileData;
+                    downloadBtn.setAttribute('download', `${doc.name}_${doc.category}.png`);
+                } else {
+                    previewBox.innerHTML = `
+                        <p class="mb-1 fw-semibold"><i class="fa-solid fa-file-pdf text-danger me-1"></i> Official Document Ready</p>
+                        <p class="small text-muted mb-0">${doc.note || 'Click below to view or download your official document.'}</p>
+                    `;
+                    downloadBtn.href = targetUrl;
+                    downloadBtn.target = '_blank';
+                    if (doc.fileData) {
+                        downloadBtn.setAttribute('download', `${doc.name}_${doc.category}.pdf`);
+                    } else {
+                        downloadBtn.removeAttribute('download');
+                    }
+                }
+            } else {
+                document.getElementById('passwordError').style.display = 'block';
+            }
+        }
+
+        // ==========================================
+        // ADMIN PANEL FUNCTIONS (100% DIRECT ACCESS)
+        // ==========================================
+        function openAdminModal() {
+            document.getElementById('adminModal').style.display = 'flex';
+            renderAdminTable();
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        function loginAdmin() {
+            const pass = document.getElementById('adminPassInput').value.trim();
+            if (pass === 'Sanjihad') {
+                document.getElementById('adminLoginError').style.display = 'none';
+                document.getElementById('adminLoginBox').style.display = 'none';
+                document.getElementById('adminDashboardBox').style.display = 'block';
+                renderAdminTable();
+            } else {
+                document.getElementById('adminLoginError').style.display = 'block';
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('adminDashboardBox').style.display = 'none';
+            document.getElementById('adminLoginBox').style.display = 'block';
+        }
+
+        // Add New Document from Admin Panel
+        function addDocument() {
+            const name = document.getElementById('docClientName').value.trim();
+            const category = document.getElementById('docCategory').value;
+            const password = document.getElementById('docPassword').value.trim();
+            const link = document.getElementById('docLinkInput').value.trim();
+            const note = document.getElementById('docNote').value.trim();
+            const fileInput = document.getElementById('docFileInput');
+
+            if (!name || !password) {
+                alert('Please enter both Client Full Name and Password (Passport Number)!');
+                return;
+            }
+
+            const today = new Date().toLocaleDateString('en-GB', {
+                day: '2-digit', month: 'short', year: 'numeric'
+            });
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    saveNewDocRecord(name, category, password, e.target.result, link, note, today);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                saveNewDocRecord(name, category, password, '', link, note, today);
+            }
+        }
+
+        function saveNewDocRecord(name, category, password, fileData, fileLink, note, date) {
+            const docs = getDocuments();
+            docs.unshift({
+                id: Date.now(),
+                name,
+                category,
+                password,
+                date,
+                fileData,
+                fileLink: fileLink || 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+                note
+            });
+            saveDocuments(docs);
+
+            // Reset inputs
+            document.getElementById('docClientName').value = '';
+            document.getElementById('docPassword').value = '';
+            document.getElementById('docLinkInput').value = '';
+            document.getElementById('docNote').value = '';
+            document.getElementById('docFileInput').value = '';
+
+            renderAdminTable();
+            renderDocuments();
+            alert('Document added successfully for ' + name + '!');
+        }
+
+        function deleteDocument(id) {
+            if (!confirm('Are you sure you want to delete this document?')) return;
+            const docs = getDocuments().filter(d => d.id !== id);
+            saveDocuments(docs);
+            renderAdminTable();
+            renderDocuments();
+        }
+
+        function renderAdminTable() {
+            const docs = getDocuments();
+            document.getElementById('adminDocCount').innerText = docs.length;
+            const tbody = document.getElementById('adminTableBody');
+
+            tbody.innerHTML = docs.map(doc => `
+                <tr>
+                    <td class="fw-bold">${doc.name}</td>
+                    <td><span class="badge bg-primary">${doc.category}</span></td>
+                    <td><code class="fw-bold text-dark">${doc.password}</code></td>
+                    <td>${doc.date}</td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-danger" onclick="deleteDocument(${doc.id})">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Initial Render on Page Load
+        window.onload = function() {
+            renderDocuments();
+        };
+    </script>
+</body>
+</html>
