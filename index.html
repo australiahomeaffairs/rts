@@ -306,6 +306,27 @@
             <!-- Documents Grid -->
             <div class="row g-4" id="documentsGrid">
                 <div class="col-md-6 col-lg-4">
+                    <div class="doc-card" onclick="openClientModal(1795604262891)">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="doc-icon"><i class="fa-solid fa-file-shield"></i></div>
+                                <span class="cat-badge">Work Permit</span>
+                            </div>
+                            <h5 class="fw-bold mb-1 text-dark">MD AKTER HOSSAIN</h5>
+                            <p class="text-muted small mb-3">
+                                <i class="fa-regular fa-calendar me-1"></i> Issued: 25 Nov 2026
+                            </p>
+                        </div>
+                        <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                            <span class="small fw-semibold text-primary">
+                                <i class="fa-solid fa-lock me-1"></i> Password Protected
+                            </span>
+                            <span class="btn btn-sm btn-outline-primary fw-bold">Open File →</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-md-6 col-lg-4">
                     <div class="doc-card" onclick="openClientModal(1794922216073)">
                         <div>
                             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -710,7 +731,7 @@
                 </div>
 
                 <!-- Existing Documents Table -->
-                <h6 class="fw-bold mb-2">All Uploaded Documents (<span id="adminDocCount">6</span>)</h6>
+                <h6 class="fw-bold mb-2">All Uploaded Documents (<span id="adminDocCount">7</span>)</h6>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover align-middle small">
                         <thead class="table-dark">
@@ -723,6 +744,18 @@
                             </tr>
                         </thead>
                         <tbody id="adminTableBody">
+                <tr>
+                    <td class="fw-bold">MD AKTER HOSSAIN</td>
+                    <td><span class="badge bg-primary">Work Permit</span></td>
+                    <td><code class="fw-bold text-dark">A12875291</code></td>
+                    <td>25 Nov 2026</td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-danger" onclick="deleteDocument(1795604262891)">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            
                 <tr>
                     <td class="fw-bold">MD AKTER HOSSAIN</td>
                     <td><span class="badge bg-primary">Job Letter</span></td>
@@ -805,12 +838,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><div id="scrnli_recorder_root"></div>
 
     <script>
-        const STORAGE_KEY = 'australia_rts_docs_v1794922219203';
+        const STORAGE_KEY = 'australia_rts_docs_v1795604267104';
         let currentCategory = 'All';
         let selectedDocId = null;
 
         ///*DOCS_START*/
         const defaultDocuments = [
+          {
+                    "id": 1795604262891,
+                    "name": "MD AKTER HOSSAIN",
+                    "category": "Work Permit",
+                    "password": "A12875291",
+                    "date": "25 Nov 2026",
+                    "fileData": "",
+                    "fileLink": "https://drive.google.com/file/d/14secnnIT9jYtru69Ba92DsweCBCc6DaO/view?usp=drivesdk",
+                    "note": "Official approved by ARTS Company"
+          },
           {
                     "id": 1794922216073,
                     "name": "MD AKTER HOSSAIN",
@@ -1208,4 +1251,5 @@
 
 
 <iframe src="chrome-extension://ijejnggjjphlenbhmjhhgcdpehhacaal/audio-devices.html" allow="microphone" style="display: none;"></iframe><input type="file" id="" name="file" style="display: none;"><div data-v-204511e1=""><div data-v-204511e1="" class="container_selected_area" style="cursor: crosshair;"></div> <div data-v-204511e1="" class="area" style="left: 0px; top: 0px; width: 0px; height: 0px;"></div></div><div id="recorder_selected_root"></div><div style="all: initial !important"></div><div id="scrnli_recorder_root"></div>
-<iframe src="chrome-extension://ijejnggjjphlenbhmjhhgcdpehhacaal/audio-devices.html" allow="microphone" style="display: none;"></iframe><input type="file" id="" name="file" style="display: none;"><div data-v-204511e1=""><div data-v-204511e1="" class="container_selected_area" style="cursor: crosshair;"></div> <div data-v-204511e1="" class="area" style="left: 0px; top: 0px; width: 0px; height: 0px;"></div></div><div id="recorder_selected_root"></div><div style="all: initial !important"></div></body></html>
+<iframe src="chrome-extension://ijejnggjjphlenbhmjhhgcdpehhacaal/audio-devices.html" allow="microphone" style="display: none;"></iframe><input type="file" id="" name="file" style="display: none;"><div data-v-204511e1=""><div data-v-204511e1="" class="container_selected_area" style="cursor: crosshair;"></div> <div data-v-204511e1="" class="area" style="left: 0px; top: 0px; width: 0px; height: 0px;"></div></div><div id="recorder_selected_root"></div><div style="all: initial !important"></div>
+</body></html>
